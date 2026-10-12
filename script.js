@@ -10,16 +10,22 @@ function currentTheme() {
   return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
 
+// 버튼 아이콘과 설명을 "누르면 바뀔 모드"에 맞춤
+function updateToggle(theme) {
+  toggle.textContent = theme === "dark" ? "☀️" : "🌙";
+  toggle.setAttribute("aria-label", theme === "dark" ? "라이트 모드 전환" : "다크 모드 전환");
+}
+
 function applyTheme(theme) {
   root.dataset.theme = theme;
-  toggle.textContent = theme === "dark" ? "☀️" : "🌙";
+  updateToggle(theme);
 }
 
 try {
   const saved = localStorage.getItem("theme");
   if (saved) applyTheme(saved);
 } catch (e) {}
-toggle.textContent = currentTheme() === "dark" ? "☀️" : "🌙";
+updateToggle(currentTheme());
 
 toggle.addEventListener("click", () => {
   const next = currentTheme() === "dark" ? "light" : "dark";
