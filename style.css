@@ -127,6 +127,17 @@ h2 {
   margin-top: 4px;
 }
 
+.contacts {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+}
+
+.contacts a { color: var(--accent); text-decoration: none; }
+
+.contacts a:hover { text-decoration: underline; }
+
 footer {
   text-align: center;
   color: var(--muted);
